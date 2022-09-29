@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import AddPerson from './AddPerson';
+import EditPerson from './EditPerson';
+import SearchBar from './SearchBar';
 
 const Body = () => {
   return (
     <Container>
-        <AddPerson/>
+        {/* <AddPerson/> */}
+        {/* <EditPerson id='9'/> */}
+        <SearchBar/>
     </Container>
   )
 };
