@@ -2,32 +2,20 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { primaryColor, gray } from '../styles/colors';
 
-const SearchBar = () => {
-    const [ text, setText ] = useState('');
-    const submiting = e => {
-        // console.log( name +': ' + balance )
-        // setName('');
-        // setBalance();
-      };
-    return (
+const DeletePerson = (props) => {
+  return (
     <Container>
         <Card>
-            <p>Search</p>
+            <h3>Eliminar ? {props?.name}</h3>
             <div>
-                <input type="text" placeholder="Nombre" 
-                id="name" className='inputClass'
-                onChange={ e => setText(e.target.value) }
-                value={text}/>
-                <Btn onClick={ submiting }>
-                    Buscar
-                </Btn>
+                <Btn>Si</Btn><Btn>Volver</Btn>
             </div>
         </Card>
     </Container>
   )
 }
 
-export default SearchBar;
+export default DeletePerson;
 
 const Container = styled.div`
     min-height: 100%;
@@ -47,14 +35,6 @@ const Card = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 3em;
-    .inputClass{
-      color: white;
-      font-weight: bold;
-      margin: 0.5em 0.2em;
-      padding: 0.4em 0.9em;
-      background-color: rgba( 50, 50, 50, 0.8 );
-      border-radius: 3em;
-    }
 `;
 
 const Btn = styled.button`
