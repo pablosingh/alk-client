@@ -20,6 +20,7 @@ const Dashbord = () => {
                 type="deposit" concept="transferencia"
                 amount="456" date="2022-09-01"
             />
+            <Operation addState={true} />
         </Card>
     </Container>
   )

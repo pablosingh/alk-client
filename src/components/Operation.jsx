@@ -8,15 +8,18 @@ const Operation = props => {
         type: '',
         concept: '',
         amount: 0,
-        date: ''
-    };   
+        date: '',
+        editState: true,
+        addState: false
+    };
+    const [ data, setData ] = useState(initValues);   
     useEffect( ()=> {
         setData({
-            // ...initValues,   
-            ...props
+            ...initValues,
+            ...props,
+            addState: props.addState ? true : false
         });
     }, []);
-    const [ data, setData ] = useState(initValues);
     const submiting = e => {
         console.log(data);
         // setData(initValues);
@@ -32,7 +35,8 @@ const Operation = props => {
     <Container>
         <div className="panel">
             <select className='inputClass' onChange={ changing } 
-                name="type" value={data?.type}>
+                name="type" value={data?.type} 
+                disabled={!data.addState && data.editState}>
                 {/* <option disabled={true} selected={true}>Tipo</option>    */}
                 <option value="deposit">Deposito</option>
                 <option value="withdraw">Extraccion</option>
@@ -41,29 +45,41 @@ const Operation = props => {
                 name="concept" className='inputClass concept' 
                 onChange={ changing }
                 value={ data?.concept }
+                disabled={!data.addState && data.editState}
                 />
             <input type="text" placeholder="Importe" 
                 name="amount" className='inputClass amount' 
                 onChange={ changing }
                 value={data?.amount}
+                disabled={!data.addState && data?.editState}
                 />
             <input type="date" placeholder="Fecha" 
                 name="date" className='inputClass' 
                 onChange={ changing }
                 value={data?.date}
-            />
-            <Btn>
+                disabled={!data.addState && data.editState}
+                />
+            <Btn className={`${ data.addState ? `on`: `off` }`}
+                onClick={ ()=> console.log('Agregar')}>
                 Agregar
             </Btn>
-            <Btn onClick={ submiting }>
+            <Btn 
+                className={`${ !data.addState && !data.editState ? `on`: `off` }`}
+                onClick={ ()=> setData({...data, editState: !data.editState})}>
                 ok
             </Btn>
-            <Btn>
+            <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
+                onClick={ ()=> setData({...data, editState: !data.editState})}>
                 Edit
             </Btn>
-            <Btn>
+            
+            <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
+                onClick={ ()=> console.log('borrar')}>  
                 Borrar
             </Btn>
+            {/* <Btn onClick={ ()=> setData({...data, addState: !data.addState}) }>
+                Ver
+            </Btn> */}
         </div>
     </Container>
   )
@@ -92,6 +108,12 @@ const Container = styled.div`
     .amount{
         width: 4em;
     }
+    .on{
+        display: inline-block;
+    }
+    .off{
+        display: none;
+    }
 `;
 
 const Btn = styled.button`
@@ -101,8 +123,4 @@ const Btn = styled.button`
   padding: 0.5em 1em;
   border-radius: 2em;
   transition: all .4s ease;
-  .active{
-    display: inline-block;
-  }
-  .
 `;
