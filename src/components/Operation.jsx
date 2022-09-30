@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { FiEdit } from 'react-icons/fi';
+import { AiOutlinePlusCircle, AiOutlineCheckCircle } from 'react-icons/ai';
+import { MdDeleteOutline } from 'react-icons/md';
 import { primaryColor, gray } from '../styles/colors';
 
 
@@ -61,21 +64,24 @@ const Operation = props => {
                 />
             <Btn className={`${ data.addState ? `on`: `off` }`}
                 onClick={ ()=> console.log('Agregar')}>
-                Agregar
+                <AiOutlinePlusCircle/>
             </Btn>
             <Btn 
                 className={`${ !data.addState && !data.editState ? `on`: `off` }`}
                 onClick={ ()=> setData({...data, editState: !data.editState})}>
-                ok
+                <AiOutlineCheckCircle/>
             </Btn>
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
                 onClick={ ()=> setData({...data, editState: !data.editState})}>
-                Edit
+                {/* Edit */}
+                <FiEdit/>
             </Btn>
             
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
                 onClick={ ()=> console.log('borrar')}>  
-                Borrar
+                {/* Borrar */}
+                {/* <AiFillDelete/> */}
+                <MdDeleteOutline/>
             </Btn>
             {/* <Btn onClick={ ()=> setData({...data, addState: !data.addState}) }>
                 Ver

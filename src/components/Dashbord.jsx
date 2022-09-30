@@ -4,22 +4,47 @@ import { primaryColor, gray } from '../styles/colors';
 import Operation from './Operation';
 
 const Dashbord = () => {
+    const arreglo = [
+        {
+            type:"deposit",
+            concept:"sueldo",
+            amount:"1000",
+            date:"2022-09-01"
+        },
+        {
+            type:"withdraw",
+            concept:"comida",
+            amount:"500",
+            date:"2022-09-19"
+        },
+        {
+            type:"withdraw",
+            concept:"nafta",
+            amount:"300",
+            date:"2022-09-29"
+        },
+        {
+            type:"deposit",
+            concept:"venta",
+            amount:"90",
+            date:"2022-09-10"
+        }
+    ];
   return (
     <Container>
         <Card>
-            <h3>Dashbord</h3>
-            <Operation 
+            <h3>Operaciones</h3>
+            { arreglo && arreglo.map( o => <Operation 
+                type={o.type} 
+                concept={o.concept}
+                amount={o.amount} 
+                date={o.date}
+            />)}
+            {/* <Operation 
                 type="deposit" concept="sueldo"
                 amount="1000" date="2022-09-19"
-            />
-            <Operation 
-                type="withdraw" concept="otros"
-                amount="500" date="2022-09-20"
-            />
-            <Operation 
-                type="deposit" concept="transferencia"
-                amount="456" date="2022-09-01"
-            />
+            /> */}
+            
             <Operation addState={true} />
         </Card>
     </Container>
