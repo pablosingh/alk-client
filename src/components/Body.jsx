@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import AddPerson from './AddPerson';
-import DeletePerson from './DeletePerson';
-import EditPerson from './EditPerson';
-import SearchBar from './SearchBar';
-import AddOperation from './operations/AddOperation';
+// import AddPerson from './AddPerson';
+// import DeletePerson from './DeletePerson';
+// import EditPerson from './EditPerson';
+// import SearchBar from './SearchBar';
+// import AddOperation from './operations/AddOperation';
+import Operation from './Operation';
+import Dashbord from './Dashbord';
 
 const Body = () => {
   return (
@@ -13,7 +15,12 @@ const Body = () => {
         {/* <EditPerson id='9'/> */}
         {/* <SearchBar/> */}
         {/* <DeletePerson name='Persona 1'/> */}
-        <AddOperation/>
+        {/* <AddOperation/> */}
+        <Dashbord/>
+        {/* <Operation 
+                type="withdraw" concept="otros"
+                amount="500" date="2022-09-20"
+            />   */}
     </Container>
   )
 };
