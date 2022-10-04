@@ -2,8 +2,13 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { primaryColor, gray } from '../styles/colors';
 import Operation from './Operation';
+import { loadOperations } from '../redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Dashbord = () => {
+    const dispatch = useDispatch();
+    const state = useSelector( state => state );
+
     const arreglo = [
         {
             type:"deposit",
@@ -30,20 +35,29 @@ const Dashbord = () => {
             date:"2022-09-10"
         }
     ];
+    useEffect( () => {
+        // console.log('initial');
+        dispatch( loadOperations(1));
+    }, []);
   return (
     <Container>
         <Card>
             <h3>Operaciones</h3>
-            { arreglo && arreglo.map( o => <Operation 
+            {/* <button onClick={ ()=> console.log(state) }>Estado</button> */}
+            {/* { arreglo && arreglo.map( (o,i) => <Operation 
                 type={o.type} 
                 concept={o.concept}
                 amount={o.amount} 
                 date={o.date}
+                key={i}
+            />)} */}
+            { state && state?.operations.map( (o,i) => <Operation 
+                type={o.type} 
+                concept={o.concept}
+                amount={o.amount} 
+                date={o.dateOp}
+                key={i}
             />)}
-            {/* <Operation 
-                type="deposit" concept="sueldo"
-                amount="1000" date="2022-09-19"
-            /> */}
             
             <Operation addState={true} />
         </Card>

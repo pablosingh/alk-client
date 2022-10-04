@@ -7,31 +7,32 @@ import {
     SET_ACTUAL_DINNER,
     ADD_FOOD_DINNER,
     CLEAR_STATE,
-    SET_TABLE
+    SET_TABLE,
+    // ////////////////////////////////////////
+    LOAD_OPERATIONS,
 } from './actions';
 
 import { order } from './functionsFilters';
 const initialState = {
     // ******************************
-    amountForPage: 10,
-    dog: {},
-    loading: true,
-    // ******************************
-    dinners: [],
-    id: 1,
-    actualDinner: 0,
-    table: 0,
+    // amountForPage: 10,
+    // dog: {},
+    // loading: true,
+    // // ******************************
+    // dinners: [],
+    // id: 1,
+    // actualDinner: 0,
+    // table: 0,
     // ******************************
     operations: [],
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case LOAD_CARDS:
-            // console.log("load");
+        case LOAD_OPERATIONS:
             return {
                 ...state,
-                cards: [...action.payload]
+                operations: [...action.payload]
             };
         case SET_LOADING:
             let loading;
@@ -45,45 +46,45 @@ export default (state = initialState, action) => {
                 loading
             };
             // ///////////////////////////////////
-        case ADD_DINNERS:
-            const d = {
-                name: action.payload,
-                id: state.id,
-                foods: []
-            };
-            state.dinners.push(d);
-            return {
-                ...state,
-                id: state.id +1,
-            };
-        case REMOVE_DINNER: 
-            return{
-                ...state,
-                dinners: state.dinners.filter( d => d.id != action.payload )
-            };
-        case SET_ACTUAL_DINNER:
-            return {
-                ...state,
-                actualDinner: action.payload
-            };
-        case ADD_FOOD_DINNER:
-            let person = state.dinners.find( d => d.id == state.actualDinner );
-            person.foods.push(action.payload);
-            console.log(action.payload);
-            return {
-                ...state,
-                dinners: state.dinners
-            };
-        case CLEAR_STATE:
-            return {
-                ...initialState,
-                dinners: []
-            };
-        case SET_TABLE:
-            return {
-                ...state,
-                table: action.payload
-            };
+        // case ADD_DINNERS:
+        //     const d = {
+        //         name: action.payload,
+        //         id: state.id,
+        //         foods: []
+        //     };
+        //     state.dinners.push(d);
+        //     return {
+        //         ...state,
+        //         id: state.id +1,
+        //     };
+        // case REMOVE_DINNER: 
+        //     return{
+        //         ...state,
+        //         dinners: state.dinners.filter( d => d.id != action.payload )
+        //     };
+        // case SET_ACTUAL_DINNER:
+        //     return {
+        //         ...state,
+        //         actualDinner: action.payload
+        //     };
+        // case ADD_FOOD_DINNER:
+        //     let person = state.dinners.find( d => d.id == state.actualDinner );
+        //     person.foods.push(action.payload);
+        //     console.log(action.payload);
+        //     return {
+        //         ...state,
+        //         dinners: state.dinners
+        //     };
+        // case CLEAR_STATE:
+        //     return {
+        //         ...initialState,
+        //         dinners: []
+        //     };
+        // case SET_TABLE:
+        //     return {
+        //         ...state,
+        //         table: action.payload
+        //     };
         default: return {...state};
     
     }
