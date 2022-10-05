@@ -43,7 +43,7 @@ const Dashbord = () => {
     <Container>
         <Card>
             <h3>Operaciones</h3>
-            {/* <button onClick={ ()=> console.log(state) }>Estado</button> */}
+            <button onClick={ ()=> console.log(state) }>Estado</button>
             {/* { arreglo && arreglo.map( (o,i) => <Operation 
                 type={o.type} 
                 concept={o.concept}
@@ -51,15 +51,16 @@ const Dashbord = () => {
                 date={o.date}
                 key={i}
             />)} */}
-            { state && state?.operations.map( (o,i) => <Operation 
+            { state && state?.operations.map( o => <Operation 
+                id={o.id}
                 type={o.type} 
                 concept={o.concept}
                 amount={o.amount} 
                 date={o.dateOp}
-                key={i}
+                key={o.id}
             />)}
             
-            <Operation addState={true} />
+            <Operation addState={true} personId={"1"}/>
         </Card>
     </Container>
   )

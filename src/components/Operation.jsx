@@ -4,11 +4,14 @@ import { FiEdit } from 'react-icons/fi';
 import { AiOutlinePlusCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
 import { primaryColor, gray } from '../styles/colors';
+import { BACKEND_URL, loadOperations } from '../redux/actions';
+import { useDispatch } from 'react-redux';
 
 
 const Operation = props => {
+    const dispatch = useDispatch();
     const initValues = {
-        type: '',
+        type: 'deposit',
         concept: '',
         amount: 0,
         date: '',
@@ -33,6 +36,37 @@ const Operation = props => {
             ...data,
             [e.target.name]: e.target.value
         });
+    };
+    const editing = async () => {
+        // console.log(data);
+        await fetch(`${BACKEND_URL}/editOperation` , {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        // .then( res => console.log(res.json()))
+        .then( res => dispatch( loadOperations(1) ))
+        .catch(err => console.log(err) );
+    };
+    const deleting = async () => {
+        await fetch(`${BACKEND_URL}/deleteOperation` , {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then( res => dispatch( loadOperations(1) ))
+        .catch(err => console.log(err) );
+    };
+    const adding = async () => {
+        console.log(data);
+        await fetch(`${BACKEND_URL}/createOperation` , {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then( res => console.log(res.json()))
+        .then( res => dispatch( loadOperations(1) ))
+        .catch(err => console.log(err) );
     };
   return (
     <Container>
@@ -63,12 +97,22 @@ const Operation = props => {
                 disabled={!data.addState && data.editState}
                 />
             <Btn className={`${ data.addState ? `on`: `off` }`}
-                onClick={ ()=> console.log('Agregar')}>
+                onClick={ ()=> {
+                    adding();
+                    setData({
+                        ...initValues,
+                        ...props,
+                        addState: props.addState ? true : false
+                    });
+                    }}>
                 <AiOutlinePlusCircle/>
             </Btn>
             <Btn 
                 className={`${ !data.addState && !data.editState ? `on`: `off` }`}
-                onClick={ ()=> setData({...data, editState: !data.editState})}>
+                onClick={ ()=> {
+                    setData({...data, editState: !data.editState});
+                    editing();
+                    }}>
                 <AiOutlineCheckCircle/>
             </Btn>
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
@@ -78,7 +122,7 @@ const Operation = props => {
             </Btn>
             
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
-                onClick={ ()=> console.log('borrar')}>  
+                onClick={ ()=> deleting()}>  
                 {/* Borrar */}
                 {/* <AiFillDelete/> */}
                 <MdDeleteOutline/>

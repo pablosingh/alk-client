@@ -1,5 +1,6 @@
 // export const LOAD_CARDS = 'LOAD_CARDS';
 export const SET_LOADING = 'SET_LOADING';
+export const BACKEND_URL = 'http://localhost:3001';
 
 // export const ADD_DINNERS = 'ADD_DINNERS';
 // export const REMOVE_DINNER = 'REMOVE_DINNER';
@@ -9,6 +10,7 @@ export const SET_LOADING = 'SET_LOADING';
 // export const SET_TABLE = 'SET_TABLE';
 
 export const LOAD_OPERATIONS = 'LOAD_OPERATIONS';
+export const EDIT_OPERATION = 'EDIT_OPERATION';
 
 
 export function loadOperations(id){
@@ -16,7 +18,7 @@ export function loadOperations(id){
         const all = [];
         // dispatch( { type: SET_LOADING, payload: true } );
         try {
-            await fetch( `http://localhost:3001/getOperationByPerson/${id}` )
+            await fetch( `${BACKEND_URL}/getOperationByPerson/${id}` )
                 .then( js => js.json() )
                 .then( arrayJson => {
                     arrayJson.result.map( element => all.push(element) );
@@ -38,3 +40,5 @@ export function loadOperations(id){
 // export const addFoodDinner = (food) => ({ type: ADD_FOOD_DINNER, payload: food });
 // export const clearState = () => ({ type: CLEAR_STATE, payload: null });
 // export const setTable = (number) => ({ type: SET_TABLE, payload: number });
+
+// export const editOperation = (op) => ({ type: EDIT_OPERATION, payload: op });

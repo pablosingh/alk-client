@@ -10,6 +10,7 @@ import {
     SET_TABLE,
     // ////////////////////////////////////////
     LOAD_OPERATIONS,
+    EDIT_OPERATION,
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -45,6 +46,10 @@ export default (state = initialState, action) => {
                 ...state,
                 loading
             };
+        // case EDIT_OPERATION:
+        //     return {
+        //         ...state,
+        //     };
             // ///////////////////////////////////
         // case ADD_DINNERS:
         //     const d = {
