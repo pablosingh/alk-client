@@ -17,14 +17,8 @@ import { order } from './functionsFilters';
 const initialState = {
     // ******************************
     // amountForPage: 10,
-    // dog: {},
     // loading: true,
     // // ******************************
-    // dinners: [],
-    // id: 1,
-    // actualDinner: 0,
-    // table: 0,
-    // ******************************
     operations: [],
 };
 
@@ -51,45 +45,6 @@ export default (state = initialState, action) => {
         //         ...state,
         //     };
             // ///////////////////////////////////
-        // case ADD_DINNERS:
-        //     const d = {
-        //         name: action.payload,
-        //         id: state.id,
-        //         foods: []
-        //     };
-        //     state.dinners.push(d);
-        //     return {
-        //         ...state,
-        //         id: state.id +1,
-        //     };
-        // case REMOVE_DINNER: 
-        //     return{
-        //         ...state,
-        //         dinners: state.dinners.filter( d => d.id != action.payload )
-        //     };
-        // case SET_ACTUAL_DINNER:
-        //     return {
-        //         ...state,
-        //         actualDinner: action.payload
-        //     };
-        // case ADD_FOOD_DINNER:
-        //     let person = state.dinners.find( d => d.id == state.actualDinner );
-        //     person.foods.push(action.payload);
-        //     console.log(action.payload);
-        //     return {
-        //         ...state,
-        //         dinners: state.dinners
-        //     };
-        // case CLEAR_STATE:
-        //     return {
-        //         ...initialState,
-        //         dinners: []
-        //     };
-        // case SET_TABLE:
-        //     return {
-        //         ...state,
-        //         table: action.payload
-        //     };
         default: return {...state};
     
     }

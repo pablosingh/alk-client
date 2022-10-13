@@ -44,13 +44,6 @@ const Dashbord = () => {
         <Card>
             <h3>Operaciones</h3>
             <button onClick={ ()=> console.log(state) }>Estado</button>
-            {/* { arreglo && arreglo.map( (o,i) => <Operation 
-                type={o.type} 
-                concept={o.concept}
-                amount={o.amount} 
-                date={o.date}
-                key={i}
-            />)} */}
             { state && state?.operations.map( o => <Operation 
                 id={o.id}
                 type={o.type} 
