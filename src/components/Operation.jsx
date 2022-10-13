@@ -124,7 +124,6 @@ const Operation = props => {
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
                 onClick={ ()=> deleting()}>  
                 {/* Borrar */}
-                {/* <AiFillDelete/> */}
                 <MdDeleteOutline/>
             </Btn>
             {/* <Btn onClick={ ()=> setData({...data, addState: !data.addState}) }>
