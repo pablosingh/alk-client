@@ -11,6 +11,7 @@ import {
     // ////////////////////////////////////////
     LOAD_OPERATIONS,
     EDIT_OPERATION,
+    SET_BALANCE
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -20,6 +21,7 @@ const initialState = {
     // loading: true,
     // // ******************************
     operations: [],
+    balance: 0
 };
 
 export default (state = initialState, action) => {
@@ -40,10 +42,17 @@ export default (state = initialState, action) => {
                 ...state,
                 loading
             };
-        // case EDIT_OPERATION:
-        //     return {
-        //         ...state,
-        //     };
+        case SET_BALANCE:
+            const balance = state.operations.reduce( (total, op)=> {
+                    if(op.type === 'withdraw')
+                        return total -= op.amount;
+                    else
+                        return total += op.amount;
+                }, 0);
+            return {
+                ...state,
+                balance
+            };
             // ///////////////////////////////////
         default: return {...state};
     

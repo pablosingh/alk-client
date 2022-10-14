@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 
 
 const Operation = props => {
+    const sizeBtn = 15;
     const dispatch = useDispatch();
     const initValues = {
         type: 'deposit',
@@ -91,7 +92,7 @@ const Operation = props => {
                 disabled={!data.addState && data?.editState}
                 />
             <input type="date" placeholder="Fecha" 
-                name="date" className='inputClass' 
+                name="dateOp" className='inputClass' 
                 onChange={ changing }
                 value={data?.date}
                 disabled={!data.addState && data.editState}
@@ -105,7 +106,7 @@ const Operation = props => {
                         addState: props.addState ? true : false
                     });
                     }}>
-                <AiOutlinePlusCircle/>
+                <AiOutlinePlusCircle size={sizeBtn}/>
             </Btn>
             <Btn 
                 className={`${ !data.addState && !data.editState ? `on`: `off` }`}
@@ -113,18 +114,18 @@ const Operation = props => {
                     setData({...data, editState: !data.editState});
                     editing();
                     }}>
-                <AiOutlineCheckCircle/>
+                <AiOutlineCheckCircle size={sizeBtn}/>
             </Btn>
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
                 onClick={ ()=> setData({...data, editState: !data.editState})}>
                 {/* Edit */}
-                <FiEdit/>
+                <FiEdit size={sizeBtn}/>
             </Btn>
             
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
                 onClick={ ()=> deleting()}>  
                 {/* Borrar */}
-                <MdDeleteOutline/>
+                <MdDeleteOutline size={sizeBtn}/>
             </Btn>
             {/* <Btn onClick={ ()=> setData({...data, addState: !data.addState}) }>
                 Ver

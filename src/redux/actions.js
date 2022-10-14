@@ -3,6 +3,7 @@ export const BACKEND_URL = 'http://localhost:3001';
 
 export const LOAD_OPERATIONS = 'LOAD_OPERATIONS';
 export const EDIT_OPERATION = 'EDIT_OPERATION';
+export const SET_BALANCE = 'SET_BALANCE';
 
 
 export function loadOperations(id){
@@ -16,6 +17,7 @@ export function loadOperations(id){
                     arrayJson.result.map( element => all.push(element) );
                 })
                 .then( res => dispatch( { type: LOAD_OPERATIONS, payload: all } ))
+                .then( res => dispatch( setBalance() ))
                 .catch( err => console.error(err) );
         } catch (e) {
             console.error(e);
@@ -27,3 +29,4 @@ export function loadOperations(id){
 
 
 // export const editOperation = (op) => ({ type: EDIT_OPERATION, payload: op });
+export const setBalance = () => ({ type: SET_BALANCE, payload: null });

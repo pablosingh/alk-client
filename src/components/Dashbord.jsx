@@ -36,14 +36,13 @@ const Dashbord = () => {
         }
     ];
     useEffect( () => {
-        // console.log('initial');
         dispatch( loadOperations(1));
     }, []);
   return (
     <Container>
         <Card>
-            <h3>Operaciones</h3>
-            <button onClick={ ()=> console.log(state) }>Estado</button>
+            <h3>Saldo : {state.balance}</h3>
+            {/* <button onClick={ ()=> console.log(state) }>Estado</button> */}
             { state && state?.operations.map( o => <Operation 
                 id={o.id}
                 type={o.type} 
