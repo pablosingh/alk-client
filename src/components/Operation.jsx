@@ -118,18 +118,13 @@ const Operation = props => {
             </Btn>
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
                 onClick={ ()=> setData({...data, editState: !data.editState})}>
-                {/* Edit */}
                 <FiEdit size={sizeBtn}/>
             </Btn>
             
             <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
                 onClick={ ()=> deleting()}>  
-                {/* Borrar */}
                 <MdDeleteOutline size={sizeBtn}/>
             </Btn>
-            {/* <Btn onClick={ ()=> setData({...data, addState: !data.addState}) }>
-                Ver
-            </Btn> */}
         </div>
     </Container>
   )
@@ -156,7 +151,7 @@ const Container = styled.div`
         width: 7em;
     }
     .amount{
-        width: 4em;
+        width: 2em;
     }
     .on{
         display: inline-block;

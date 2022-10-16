@@ -42,7 +42,6 @@ const Dashbord = () => {
     <Container>
         <Card>
             <h3 style={{color:"white"}}>Saldo : {state.balance}</h3>
-            {/* <button onClick={ ()=> console.log(state) }>Estado</button> */}
             { state && state?.operations.map( o => <Operation 
                 id={o.id}
                 type={o.type} 
