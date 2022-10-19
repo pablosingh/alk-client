@@ -3,7 +3,8 @@ import { primaryColor } from '../styles/colors';
 import styled from 'styled-components';
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+import Profile from "./Profile";
+
 
 const Head = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -13,9 +14,9 @@ const Head = () => {
   }
   return (
     <Container>
-      <SubContainer>
-        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-      </SubContainer>
+      {/* <SubContainer> */}
+        {isAuthenticated ? <Profile /> : <LoginButton />}
+      {/* </SubContainer> */}
     </Container>
   )
 }
@@ -25,7 +26,7 @@ export default Head;
 const Container = styled.div`
   margin: 0;
   padding: 0;
-  height: 20vh;
+  min-height: 20vh;
   width: 100%;
   display: absolute;
   top: 0;
