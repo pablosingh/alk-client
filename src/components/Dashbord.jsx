@@ -61,17 +61,18 @@ export default Dashbord;
 
 
 const Container = styled.div`
-    min-height: 100%;
+    min-height: 80vh;
     width: 100%;
     display: flex;
-    // flex-direction: column;  
+    flex-direction: column;  
     align-items: center;
     justify-content: center;
 `;
 
 const Card = styled.div`
-    // min-height: 50%;
+    min-height: 50%;
     // width: 80%;
+    margin-top: 1em;
     background-color: ${primaryColor};
     display: flex;
     flex-direction: column;

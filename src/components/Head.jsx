@@ -1,11 +1,21 @@
 import React from 'react';
 import { primaryColor } from '../styles/colors';
 import styled from 'styled-components';
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 
 const Head = () => {
+  const { isAuthenticated, isLoading } = useAuth0();
+
+  if (isLoading) {
+    return <h1>Is Loading</h1>
+  }
   return (
     <Container>
-        Head
+      <SubContainer>
+        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+      </SubContainer>
     </Container>
   )
 }
@@ -13,13 +23,20 @@ const Head = () => {
 export default Head;
 
 const Container = styled.div`
-    margin: 0;
-    padding: 0;
-    height: 20vh;
-    width: 100%;
-    display: fixed;
-    top: 0;
-    background-color: ${primaryColor};
-    color: white;
+  margin: 0;
+  padding: 0;
+  height: 20vh;
+  width: 100%;
+  display: absolute;
+  top: 0;
+  background-color: ${primaryColor};
 `;
 
+const SubContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+`;
