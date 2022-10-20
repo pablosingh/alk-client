@@ -47,7 +47,7 @@ const Dashbord = () => {
                 type={o.type} 
                 concept={o.concept}
                 amount={o.amount} 
-                date={o.dateOp}
+                dateOp={o.dateOp}
                 key={o.id}
             />)}
             

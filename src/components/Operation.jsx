@@ -15,7 +15,7 @@ const Operation = props => {
         type: 'deposit',
         concept: '',
         amount: 0,
-        date: '',
+        dateOp: '',
         editState: true,
         addState: false
     };
@@ -37,6 +37,7 @@ const Operation = props => {
             ...data,
             [e.target.name]: e.target.value
         });
+        console.log({[e.target.name]: e.target.value});
     };
     const editing = async () => {
         // console.log(data);
@@ -91,10 +92,10 @@ const Operation = props => {
                 value={data?.amount}
                 disabled={!data.addState && data?.editState}
                 />
-            <input type="date" placeholder="Fecha" 
+            <input type="date" 
                 name="dateOp" className='inputClass' 
                 onChange={ changing }
-                value={data?.date}
+                value={data?.dateOp}
                 disabled={!data.addState && data.editState}
                 />
             <Btn className={`${ data.addState ? `on`: `off` }`}
