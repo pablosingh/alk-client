@@ -5,12 +5,13 @@ import { AiOutlinePlusCircle, AiOutlineCheckCircle } from 'react-icons/ai';
 import { MdDeleteOutline } from 'react-icons/md';
 import { primaryColor, gray } from '../styles/colors';
 import { BACKEND_URL, loadOperations } from '../redux/actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Operation = props => {
     const sizeBtn = 15;
     const dispatch = useDispatch();
+    const state = useSelector( state => state );
     const initValues = {
         type: 'deposit',
         concept: '',
@@ -47,7 +48,7 @@ const Operation = props => {
             body: JSON.stringify(data)
         })
         // .then( res => console.log(res.json()))
-        .then( res => dispatch( loadOperations(1) ))
+        .then( res => dispatch( loadOperations(state.id) ))
         .catch(err => console.log(err) );
     };
     const deleting = async () => {
@@ -56,7 +57,7 @@ const Operation = props => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
-        .then( res => dispatch( loadOperations(1) ))
+        .then( res => dispatch( loadOperations(state.id) ))
         .catch(err => console.log(err) );
     };
     const adding = async () => {
@@ -67,7 +68,7 @@ const Operation = props => {
             body: JSON.stringify(data)
         })
         .then( res => console.log(res.json()))
-        .then( res => dispatch( loadOperations(1) ))
+        .then( res => dispatch( loadOperations(state.id) ))
         .catch(err => console.log(err) );
     };
   return (

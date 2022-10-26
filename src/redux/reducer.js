@@ -1,17 +1,18 @@
 import { 
-    LOAD_CARDS,
+    // LOAD_CARDS,
     // ////////////////////////////////////////
     SET_LOADING,
-    ADD_DINNERS,
-    REMOVE_DINNER,
-    SET_ACTUAL_DINNER,
-    ADD_FOOD_DINNER,
-    CLEAR_STATE,
-    SET_TABLE,
+    // ADD_DINNERS,
+    // REMOVE_DINNER,
+    // SET_ACTUAL_DINNER,
+    // ADD_FOOD_DINNER,
+    // CLEAR_STATE,
+    // SET_TABLE,
     // ////////////////////////////////////////
+    // EDIT_OPERATION,
     LOAD_OPERATIONS,
-    EDIT_OPERATION,
-    SET_BALANCE
+    SET_BALANCE,
+    SET_USER
 } from './actions';
 
 import { order } from './functionsFilters';
@@ -21,7 +22,12 @@ const initialState = {
     // loading: true,
     // // ******************************
     operations: [],
-    balance: 0
+    id: 0,
+    balance: 0,
+    name: '',
+    email: '',
+    password: '',
+    token: '',
 };
 
 export default (state = initialState, action) => {
@@ -43,7 +49,7 @@ export default (state = initialState, action) => {
                 loading
             };
         case SET_BALANCE:
-            const balance = state.operations.reduce( (total, op)=> {
+            const balanceAux = state.operations.reduce( (total, op)=> {
                     if(op.type === 'withdraw')
                         return total -= op.amount;
                     else
@@ -51,7 +57,13 @@ export default (state = initialState, action) => {
                 }, 0);
             return {
                 ...state,
-                balance
+                balance: balanceAux
+            };
+        case SET_USER:
+            const { email, password, name, balance, id } = action.payload;
+            return {
+                ...state,
+                email, password, name, balance, id
             };
             // ///////////////////////////////////
         default: return {...state};

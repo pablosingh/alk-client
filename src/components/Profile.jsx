@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "./LogoutButton";
 import styled from 'styled-components';
-
-// import JSONPretty from "react-json-pretty";
-// import "react-json-pretty/themes/monikai.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser} from '../redux/actions';
 
 const Profile = () => {
   const { user, isAuthenticated } = useAuth0();
-  console.log(user);
-  // return <pre>{JSON.stringify(user, null, 2)}</pre>;
+  const dispatch = useDispatch();
+  // console.log(user);
+  useEffect(() => {
+    if(isAuthenticated)
+      dispatch(setUser(user));
+  }, [isAuthenticated]);
   return (
     isAuthenticated && (
       <Container>
@@ -17,7 +20,6 @@ const Profile = () => {
         <div className="data">
             <h4>{user.name}</h4>
             <p>{user.email}</p>
-            {/* <JSONPretty data={user} />; */}
             <LogoutButton />
         </div>
       </Container>

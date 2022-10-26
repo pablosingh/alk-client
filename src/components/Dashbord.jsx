@@ -4,10 +4,12 @@ import { primaryColor, gray } from '../styles/colors';
 import Operation from './Operation';
 import { loadOperations } from '../redux/actions';
 import { useSelector, useDispatch } from 'react-redux';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Dashbord = () => {
     const dispatch = useDispatch();
     const state = useSelector( state => state );
+    const { isAuthenticated } = useAuth0();
 
     const arreglo = [
         {
@@ -36,11 +38,13 @@ const Dashbord = () => {
         }
     ];
     useEffect( () => {
-        dispatch( loadOperations(1));
-    }, []);
+        dispatch( loadOperations(state.id));
+    }, [state.id]);
   return (
     <Container>
+        {isAuthenticated ? 
         <Card>
+            <button onClick={ ()=>console.log(state)}>Estado</button>
             <h3 style={{color:"white"}}>Saldo : {state.balance}</h3>
             { state && state?.operations.map( o => <Operation 
                 id={o.id}
@@ -50,9 +54,12 @@ const Dashbord = () => {
                 dateOp={o.dateOp}
                 key={o.id}
             />)}
-            
-            <Operation addState={true} personId={"1"}/>
+            { state?.id ? 
+                <Operation addState={true} personId={state.id}/>
+                : <></>
+            }
         </Card>
+        :<></>}
     </Container>
   )
 }
