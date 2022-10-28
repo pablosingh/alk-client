@@ -16,10 +16,14 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <Container>
-        <img src={user.picture} alt={user.name} className='imgProfile'/>
+        {user.picture ? 
+          <img src={user.picture} alt={user.name} className='imgProfile'/>
+          : <></>
+        }
         <div className="data">
-            <h4>{user.name}</h4>
-            <p>{user.email}</p>
+            <h4 className="name">{user.name}</h4>
+            <p className="email">{user.email}</p>
+            {/* <button onClick={()=> console.log(user)}>User</button> */}
             <LogoutButton />
         </div>
       </Container>
@@ -50,6 +54,14 @@ const Container = styled.div`
     .imgProfile{
         border-radius: 50%;
         // border: 2px solid beige;
-        margin: 0.5em 1em 0.5em 1em;
+        margin: 0.5em 1em 0.5em 3em;
+    }
+    .name{
+      margin: 0.2em 0.2em;
+      padding: 0;
+    }
+    .email{
+      margin: 0.2em 0.2em;
+      padding: 0;
     }
 `;

@@ -44,7 +44,7 @@ const Dashbord = () => {
     <Container>
         {isAuthenticated ? 
         <Card>
-            <button onClick={ ()=>console.log(state)}>Estado</button>
+            {/* <button onClick={ ()=>console.log(state)}>Estado</button> */}
             <h3 style={{color:"white"}}>Saldo : {state.balance}</h3>
             { state && state?.operations.map( o => <Operation 
                 id={o.id}

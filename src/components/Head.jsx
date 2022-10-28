@@ -44,7 +44,7 @@ export default Head;
 const Container = styled.div`
   margin: 0;
   padding: 0;
-  min-height: 20vh;
+  // min-height: 20vh;
   width: 100%;
   display: absolute;
   top: 0;
