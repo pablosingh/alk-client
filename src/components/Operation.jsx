@@ -74,73 +74,71 @@ const Operation = props => {
   return (
     <Container>
         <div className="panel">
-            <div className="one type">
-                {data?.type && data?.type=='deposit' ? <BsArrowDownSquare/> : <BsArrowUpSquare/>}
+            <div className="one d-flex">
+                <div className="type">
+                    {data?.type && data?.type=='deposit' ? <BsArrowDownSquare/> : <BsArrowUpSquare/>}
+                </div>
+                <select className='inputClass typeSelect' onChange={ changing } 
+                    name="type" value={data?.type} 
+                    disabled={!data.addState && data.editState}>
+                    {/* <option disabled={true} selected={true}>Tipo</option>    */}
+                    <option value="deposit">Deposito</option>
+                    <option value="withdraw">Extraccion</option>
+                </select>
                 <input type="text" placeholder="Concepto"  
                     name="concept" className='inputClass' 
                     onChange={ changing }
                     value={ data?.concept }
                     disabled={!data.addState && data.editState}
-                    size={ data?.concept?.length>4 ? data.concept.length-4 : 4 }
+                    size={ data?.concept?.length>4 ? data.concept.length-2 : 4 }
                 />
             </div>
-            <select className='inputClass typeSelect' onChange={ changing } 
-                name="type" value={data?.type} 
-                disabled={!data.addState && data.editState}>
-                {/* <option disabled={true} selected={true}>Tipo</option>    */}
-                <option value="deposit">Deposito</option>
-                <option value="withdraw">Extraccion</option>
-            </select>
-            <input type="text" placeholder="Concepto"  
-                name="concept" className='inputClass' 
-                onChange={ changing }
-                value={ data?.concept }
-                disabled={!data.addState && data.editState}
-                size={ data?.concept?.length>4 ? data.concept.length-4 : 4 }
-            />
-
-            <input type="text" placeholder="Importe" 
-                name="amount" className='inputClass' 
-                onChange={ changing }
-                value={data?.amount}
-                disabled={!data.addState && data?.editState}
-                size={1}
-            />
-            <input type="date" 
-                name="dateOp" className='inputClass' 
-                onChange={ changing }
-                value={data?.dateOp}
-                disabled={!data.addState && data.editState}
-                size={1}
-            />
-            <Btn className={`${ data.addState ? `on`: `off` }`}
-                onClick={ ()=> {
-                    adding();
-                    setData({
-                        ...initValues,
-                        ...props,
-                        addState: props.addState ? true : false
-                    });
-                    }}>
-                <AiOutlinePlusCircle size={sizeBtn}/>
-            </Btn>
-            <Btn 
-                className={`${ !data.addState && !data.editState ? `on`: `off` }`}
-                onClick={ ()=> {
-                    setData({...data, editState: !data.editState});
-                    editing();
-                    }}>
-                <AiOutlineCheckCircle size={sizeBtn}/>
-            </Btn>
-            <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
-                onClick={ ()=> setData({...data, editState: !data.editState})}>
-                <FiEdit size={sizeBtn}/>
-            </Btn>
-            
-            <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
-                onClick={ ()=> deleting()}>  
-                <MdDeleteOutline size={sizeBtn}/>
-            </Btn>
+            <div className="two d-flex">
+                <input type="text" placeholder="Importe" 
+                    name="amount" className='inputClass' 
+                    onChange={ changing }
+                    value={data?.amount}
+                    disabled={!data.addState && data?.editState}
+                    size={1}
+                />
+                <input type="date" 
+                    name="dateOp" className='inputClass' 
+                    onChange={ changing }
+                    value={data?.dateOp}
+                    disabled={!data.addState && data.editState}
+                />
+            </div>
+            <div className="three d-flex">
+                <Btn className={`${ data.addState ? `on`: `off` }`}
+                    onClick={ ()=> {
+                        adding();
+                        setData({
+                            ...initValues,
+                            ...props,
+                            addState: props.addState ? true : false
+                        });
+                        }}>
+                    <AiOutlinePlusCircle size={sizeBtn}/>
+                </Btn>
+                <Btn 
+                    className={`${ !data.addState && !data.editState ? `on`: `off` }`}
+                    onClick={ ()=> {
+                        setData({...data, editState: !data.editState});
+                        editing();
+                        }}>
+                    <AiOutlineCheckCircle size={sizeBtn}/>
+                </Btn>
+                <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
+                    onClick={ ()=> setData({...data, editState: !data.editState})}>
+                    <FiEdit size={sizeBtn}/>
+                </Btn>
+                
+                <Btn className={`${ !data.addState && data.editState ? `on`: `off` }`}
+                    onClick={ ()=> deleting()}>  
+                    <MdDeleteOutline size={sizeBtn}/>
+                </Btn>
+            </div>
+        <hr className='line'/>
         </div>
     </Container>
   )
@@ -168,6 +166,9 @@ const Container = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
     }
     .concept{
         width: 10vw;
@@ -189,6 +190,13 @@ const Container = styled.div`
     }
     .type{
         display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5em 1em;
+        margin: 0em 0.em;
+        background-color: rgba( 50, 50, 50, 0.8 );
+        color: white;
+        border-radius: 2em;
         @media (min-width: 768px) {
             display: none;
         }
@@ -199,14 +207,14 @@ const Container = styled.div`
             display: none;
         }
     }
-    .one{
-
+    .d-flex{
+        display: flex;
     }
-    .two{
-
-    }
-    .three{
-        
+    .line{
+        width: 100%;
+        @media (min-width: 768px) {
+            display: none;
+        }
     }
 `;
 
