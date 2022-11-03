@@ -75,7 +75,7 @@ const Operation = props => {
     <Container>
         <div className="panel">
             <div className="one d-flex">
-                <div className="type">
+                <div className={`type ${data?.type=='deposit' ? 'blue':'red'}`}>
                     {data?.type && data?.type=='deposit' ? <BsArrowDownSquare/> : <BsArrowUpSquare/>}
                 </div>
                 <select className='inputClass typeSelect' onChange={ changing } 
@@ -195,11 +195,17 @@ const Container = styled.div`
         padding: 0.5em 1em;
         margin: 0em 0.em;
         background-color: rgba( 50, 50, 50, 0.8 );
-        color: white;
+        font-weight: bold;
         border-radius: 2em;
         @media (min-width: 768px) {
             display: none;
         }
+    }
+    .blue{
+        color: blue;
+    }
+    .red{
+        color: red;
     }
     .typeSelect{
         display: flex;
